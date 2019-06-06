@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.bluemix.net/redirect-to-https: "True"
+  name: web-nginx
+  namespace: default
+spec:
+  rules:
+  - host: web.iks1.jp-tok.containers.appdomain.cloud
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web-nginx
+          servicePort: 80
+  tls:
+  - hosts:
+    - web.iks1.jp-tok.containers.appdomain.cloud
+    secretName: iks1

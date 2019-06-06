@@ -36,11 +36,11 @@ podTemplate(
 	    sh 'kubectl version'
 	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl get node'
 	    stage 'deploy'
-	    sh 'cat k8s-deployment.yaml.tmpl |sed s/\'XXXXX\'/$BUILD_NUMBER/ > k8s-deployment-j.yaml'
-	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl apply -f k8s-deployment-j.yaml'
-	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl apply -f k8s-service.yaml'	    	    
+	    sh 'cat deployment.yaml.tmpl |sed s/\'XXXXX\'/$BUILD_NUMBER/ > deployment.yaml'
+	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl apply -f kubernetes/deployment.yaml'
+	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl apply -f kubernetes/service.yaml'	    	    
             stage 'expose'
-	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl apply -f k8s-ingress.yaml'
+	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl apply -f kubernetes/ingress.yaml'
         }
       }
     }
