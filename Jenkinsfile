@@ -21,25 +21,19 @@ podTemplate(
       stage('build') {
         container('dockerd') {
             git url: 'https://github.com/takara9/web-nginx'
-	    stage 'setup'
             sh 'docker login --username=$DOCKER_ID_USR --password=$DOCKER_ID_PSW'
-            stage 'build'
             sh 'docker build -t maho/web-nginx:$BUILD_NUMBER .'
-	    stage 'push'
 	    sh 'docker push maho/web-nginx:$BUILD_NUMBER'
             sh 'docker images'
         }
       }
       stage('deploy') {
         container('kubectl') {
-            stage 'setup'
 	    sh 'kubectl version'
 	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl get node'
-	    stage 'deploy'
 	    sh 'cat kubernetes/deployment.yaml.tmpl |sed s/\'XXXXX\'/$BUILD_NUMBER/ > kubernetes/deployment.yaml'
 	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl apply -f kubernetes/deployment.yaml'
 	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl apply -f kubernetes/service.yaml'	    	    
-            stage 'expose'
 	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl apply -f kubernetes/ingress.yaml'
         }
       }
