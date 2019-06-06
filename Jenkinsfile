@@ -24,7 +24,7 @@ podTemplate(
 	    stage 'setup'
             sh 'docker login --username=$DOCKER_ID_USR --password=$DOCKER_ID_PSW'
             stage 'build'
-            sh 'docker build -t maho/node-express-login:$BUILD_NUMBER .'
+            sh 'docker build -t maho/web-nginx:$BUILD_NUMBER .'
 	    stage 'push'
 	    sh 'docker push maho/web-nginx:$BUILD_NUMBER'
             sh 'docker images'
