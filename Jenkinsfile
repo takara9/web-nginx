@@ -36,7 +36,7 @@ podTemplate(
 	    sh 'kubectl version'
 	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl get node'
 	    stage 'deploy'
-	    sh 'cat deployment.yaml.tmpl |sed s/\'XXXXX\'/$BUILD_NUMBER/ > deployment.yaml'
+	    sh 'cat kubernetes/deployment.yaml.tmpl |sed s/\'XXXXX\'/$BUILD_NUMBER/ > kubernetes/deployment.yaml'
 	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl apply -f kubernetes/deployment.yaml'
 	    sh 'KUBECONFIG=/kubeconfig/kube-config-tok05-iks1.yml kubectl apply -f kubernetes/service.yaml'	    	    
             stage 'expose'
