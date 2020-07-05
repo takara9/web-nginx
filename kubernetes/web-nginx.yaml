@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: web-nginx
-        image: jp.icr.io/takara/web-nginx
+        image: __IMAGE__@__DIGEST__
         ports:
         - containerPort: 80
 ---
