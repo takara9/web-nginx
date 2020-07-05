@@ -1,5 +1,9 @@
+FROM nginx:latest AS build 
+COPY ./html /html
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+
 FROM nginx:latest
-WORKDIR /
-ADD ./html usr/share/nginx/html
-ADD ./nginx/default.conf etc/nginx/conf.d/default.conf
+COPY --from=build /html /usr/share/nginx/html
+COPY --from=build /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+
 
