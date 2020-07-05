@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: web-nginx
-        image: __IMAGE__@__DIGEST__
+        image: __IMAGE__
         ports:
         - containerPort: 80
 ---
