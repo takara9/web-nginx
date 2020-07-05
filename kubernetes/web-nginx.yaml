@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: web-nginx
-        image: maho/web-nginx:1.0
+        image: jp.icr.io/takara/web-nginx
         ports:
         - containerPort: 80
 ---
