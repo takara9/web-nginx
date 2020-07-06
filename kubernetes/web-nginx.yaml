@@ -17,6 +17,7 @@ spec:
       containers:
       - name: web-nginx
         image: __IMAGE__
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---
