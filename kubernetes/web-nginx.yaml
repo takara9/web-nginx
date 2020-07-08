@@ -28,7 +28,9 @@ metadata:
 spec:
   selector:
     app: web-nginx
+  type: NodePort
   ports:
   - protocol: TCP
     targetPort: 80
     port: 80
+    nodePort: 30008
