@@ -1,6 +1,7 @@
 # web-nginx
 
 ベースのコンテナイメージにnginx:latestを利用して簡単なWebサーバーを構築します。
-Kubernets (IKS) + Jenkins 対応
 
+* Kubernetss (IKS) + Jenkins 対応
+* Kubernetes (IKS + VPC) + Tekton 対応
 
