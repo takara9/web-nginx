@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: web-nginx
-        image: docker.io/maho/web-nginx:11
+        image: docker.io/maho/web-nginx:14
         imagePullPolicy: Always
         ports:
         - containerPort: 80
