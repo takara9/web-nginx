@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-nginx
+  labels:
+    app: web-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-nginx
+  template:
+    metadata:
+      labels:
+        app: web-nginx
+    spec:
+      containers:
+      - name: web-nginx
+        image: docker.io/maho/web-nginx:10
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
